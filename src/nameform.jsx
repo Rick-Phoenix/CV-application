@@ -1,31 +1,24 @@
 import { useState } from "react";
+import InputField from "./InputField";
 
 const queries = [
-  "First name",
-  "Last name",
-  "Country of origin",
-  "Country of residence",
-  "Phone number",
-  "Email address",
+  { name: "First name", inputType: "text" },
+  { name: "Last name", inputType: "text" },
+  { name: "Country of origin", inputType: "country" },
+  { name: "Country of residence", inputType: "country" },
+  { name: "Phone number", inputType: "number" },
+  { name: "Email address", inputType: "email" },
 ];
 
 export default function NameForm({ previousStep, nextStep }) {
-  const [input, setInput] = useState("");
   const [queryId, setQueryId] = useState(0);
   const [info, setInfo] = useState([]);
-  const query = queries[queryId];
 
   function handleSubmit(e) {
     e.preventDefault();
   }
 
-  function handleTyping(e) {
-    setInput(e.target.value);
-  }
-
   function handleNext() {
-    const newData = { data: query, value: input };
-    setInfo((info) => [...info, newData]);
     if (queryId === queries.length - 1) return nextStep();
     setQueryId((id) => id + 1);
   }
@@ -51,20 +44,11 @@ export default function NameForm({ previousStep, nextStep }) {
           <tbody>
             {queries.map((query) => {
               return (
-                <tr key={query}>
-                  <td>
-                    <label htmlFor={query}>{query}:</label>
-                  </td>
-                  <td>
-                    <input
-                      type="text"
-                      placeholder={query}
-                      value={input}
-                      id={query}
-                      onChange={handleTyping}
-                    />
-                  </td>
-                </tr>
+                <InputField
+                  key={query.name}
+                  query={query.name}
+                  type={query.inputType}
+                />
               );
             })}
           </tbody>
