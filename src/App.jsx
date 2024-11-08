@@ -13,7 +13,7 @@ function App() {
   function handleNewData(newData) {
     setData((prevData) => {
       const updatedData = [...prevData];
-      updatedData[step] = newData;
+      updatedData[step - 1] = newData;
       console.log(updatedData);
       return updatedData;
     });

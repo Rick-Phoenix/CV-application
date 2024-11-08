@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useRef, useState } from "react";
 import InputField from "./InputField";
 
 const queries = [
@@ -11,23 +11,30 @@ const queries = [
 ];
 
 export default function NameForm({ previousStep, nextStep, onCompletion }) {
-  const [queryId, setQueryId] = useState(0);
-  const [info, setInfo] = useState({});
+  const formRef = useRef(null);
 
   function handleSubmit(e) {
     e.preventDefault();
-    onCompletion(info);
+    const data = new FormData(formRef.current);
+    const dataObj = {};
+    for (const [key, value] of data.entries()) {
+      dataObj[key] = value;
+    }
+    onCompletion(dataObj);
   }
 
   function handlePrevious() {
-    if (info.length === 0 && queryId === 0) return previousStep();
-    setInfo((info) => info.slice(0, -1));
-    if (queryId !== 0) setQueryId((id) => id - 1);
+    previousStep();
   }
 
   return (
     <div>
-      <form action="" id="credentialsForm" onSubmit={handleSubmit}>
+      <form
+        action=""
+        id="credentialsForm"
+        ref={formRef}
+        onSubmit={handleSubmit}
+      >
         <nav>
           <button type="button" onClick={handlePrevious}>
             Previous
@@ -42,9 +49,6 @@ export default function NameForm({ previousStep, nextStep, onCompletion }) {
                   key={query.name}
                   query={query.name}
                   type={query.inputType}
-                  onSave={(name, value) => {
-                    setInfo((info) => ({ ...info, [name]: value }));
-                  }}
                   form={"credentialsForm"}
                 />
               );

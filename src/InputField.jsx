@@ -1,8 +1,7 @@
 import { useState } from "react";
 
-export default function InputField({ query, type, onSave, form }) {
+export default function InputField({ query, type, form }) {
   const [inputValue, setInputValue] = useState("");
-  const [isDisabled, setIsDisabled] = useState(false);
 
   function handleTyping(e) {
     setInputValue(e.target.value);
@@ -21,6 +20,7 @@ export default function InputField({ query, type, onSave, form }) {
             placeholder={query}
             value={inputValue}
             id={query}
+            name={query}
             onChange={handleTyping}
             required
           />
@@ -28,6 +28,7 @@ export default function InputField({ query, type, onSave, form }) {
           <select
             form={form}
             required
+            name={query}
             id={query}
             value={inputValue}
             onChange={(e) => {
@@ -46,21 +47,6 @@ export default function InputField({ query, type, onSave, form }) {
             })}
           </select>
         )}
-      </td>
-      <td>
-        <button
-          type="button"
-          onClick={() => {
-            const targetInput = document.getElementById(query);
-            targetInput.checkValidity()
-              ? ((targetInput.disabled = !isDisabled),
-                setIsDisabled(!isDisabled),
-                onSave(query, inputValue))
-              : targetInput.reportValidity();
-          }}
-        >
-          {isDisabled ? "Edit" : "Save"}
-        </button>
       </td>
     </tr>
   );
