@@ -1,9 +1,8 @@
 import { useState } from "react";
 
-export default function InputField({ query, type }) {
+export default function InputField({ query, type, onSave, form }) {
   const [inputValue, setInputValue] = useState("");
   const [isDisabled, setIsDisabled] = useState(false);
-  const [country, setCountry] = useState("");
 
   function handleTyping(e) {
     setInputValue(e.target.value);
@@ -17,6 +16,7 @@ export default function InputField({ query, type }) {
       <td>
         {type !== "country" ? (
           <input
+            form={form}
             type={type}
             placeholder={query}
             value={inputValue}
@@ -26,11 +26,12 @@ export default function InputField({ query, type }) {
           />
         ) : (
           <select
+            form={form}
             required
             id={query}
-            value={country}
+            value={inputValue}
             onChange={(e) => {
-              setCountry(e.target.value);
+              setInputValue(e.target.value);
             }}
           >
             <option value={""} hidden disabled>
@@ -53,7 +54,8 @@ export default function InputField({ query, type }) {
             const targetInput = document.getElementById(query);
             targetInput.checkValidity()
               ? ((targetInput.disabled = !isDisabled),
-                setIsDisabled(!isDisabled))
+                setIsDisabled(!isDisabled),
+                onSave(query, inputValue))
               : targetInput.reportValidity();
           }}
         >

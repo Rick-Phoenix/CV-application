@@ -10,17 +10,13 @@ const queries = [
   { name: "Email address", inputType: "email" },
 ];
 
-export default function NameForm({ previousStep, nextStep }) {
+export default function NameForm({ previousStep, nextStep, onCompletion }) {
   const [queryId, setQueryId] = useState(0);
-  const [info, setInfo] = useState([]);
+  const [info, setInfo] = useState({});
 
   function handleSubmit(e) {
     e.preventDefault();
-  }
-
-  function handleNext() {
-    if (queryId === queries.length - 1) return nextStep();
-    setQueryId((id) => id + 1);
+    onCompletion(info);
   }
 
   function handlePrevious() {
@@ -31,14 +27,12 @@ export default function NameForm({ previousStep, nextStep }) {
 
   return (
     <div>
-      <form action="" onSubmit={handleSubmit}>
+      <form action="" id="credentialsForm" onSubmit={handleSubmit}>
         <nav>
           <button type="button" onClick={handlePrevious}>
             Previous
           </button>
-          <button type="button" onClick={handleNext}>
-            Next
-          </button>
+          <button type="submit">Next</button>
         </nav>
         <table>
           <tbody>
@@ -48,6 +42,10 @@ export default function NameForm({ previousStep, nextStep }) {
                   key={query.name}
                   query={query.name}
                   type={query.inputType}
+                  onSave={(name, value) => {
+                    setInfo((info) => ({ ...info, [name]: value }));
+                  }}
+                  form={"credentialsForm"}
                 />
               );
             })}
