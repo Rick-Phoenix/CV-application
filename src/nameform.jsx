@@ -1,4 +1,4 @@
-import { useRef, useState } from "react";
+import { forwardRef, useRef, useState } from "react";
 import InputField from "./InputField";
 
 const queries = [
@@ -10,31 +10,24 @@ const queries = [
   { name: "Email address", inputType: "email" },
 ];
 
-export default function NameForm({ previousStep, nextStep, onCompletion }) {
-  const formRef = useRef(null);
-
+const NameForm = forwardRef(function NameForm(props, ref) {
   function handleSubmit(e) {
     e.preventDefault();
-    const data = new FormData(formRef.current);
+    const data = new FormData(ref.current);
     const dataObj = {};
     for (const [key, value] of data.entries()) {
       dataObj[key] = value;
     }
-    onCompletion(dataObj);
+    props.onCompletion(dataObj);
   }
 
   function handlePrevious() {
-    previousStep();
+    props.previousStep();
   }
 
   return (
     <div>
-      <form
-        action=""
-        id="credentialsForm"
-        ref={formRef}
-        onSubmit={handleSubmit}
-      >
+      <form action="" id="credentialsForm" ref={ref} onSubmit={handleSubmit}>
         <nav>
           <button type="button" onClick={handlePrevious}>
             Previous
@@ -58,4 +51,6 @@ export default function NameForm({ previousStep, nextStep, onCompletion }) {
       </form>
     </div>
   );
-}
+});
+
+export default NameForm;
