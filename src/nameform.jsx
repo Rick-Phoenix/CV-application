@@ -21,19 +21,9 @@ const NameForm = forwardRef(function NameForm(props, ref) {
     props.onCompletion(dataObj);
   }
 
-  function handlePrevious() {
-    props.previousStep();
-  }
-
   return (
     <div>
       <form action="" id="credentialsForm" ref={ref} onSubmit={handleSubmit}>
-        <nav>
-          <button type="button" onClick={handlePrevious}>
-            Previous
-          </button>
-          <button type="submit">Next</button>
-        </nav>
         <table>
           <tbody>
             {queries.map((query) => {
