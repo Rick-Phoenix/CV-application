@@ -9,11 +9,24 @@ function App() {
   const [data, setData] = useState([]);
   const [currentForm, setCurrentForm] = useState(null);
 
-  const nextStep = () => {
-    setStep((step) => step + 1);
-  };
+  const forms = [
+    null,
+    <CredentialsForm
+      ref={(node) => setCurrentForm(() => node)}
+      onCompletion={handleNewData}
+      key={"credentialsForm"}
+      formId={"credentialsForm"}
+      nextStep={nextStep}
+    />,
+  ];
 
-  const previousStep = () => setStep((prev) => (prev === 1 ? prev : prev - 1));
+  function nextStep() {
+    setStep((step) => step + 1);
+  }
+
+  function previousStep() {
+    setStep((prev) => (prev === 1 ? prev : prev - 1));
+  }
 
   function handleNewData(newData) {
     setData((prevData) => {
@@ -22,6 +35,10 @@ function App() {
       console.log(updatedData);
       return updatedData;
     });
+  }
+
+  function renderForm(step) {
+    return forms[step];
   }
 
   return (
@@ -34,12 +51,7 @@ function App() {
           previousStep={previousStep}
           form={currentForm}
         />
-        {step > 0 && (
-          <CredentialsForm
-            ref={(node) => setCurrentForm(() => node)}
-            onCompletion={handleNewData}
-          />
-        )}
+        {renderForm(step)}
       </div>
     </>
   );

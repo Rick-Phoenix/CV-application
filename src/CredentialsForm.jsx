@@ -13,18 +13,19 @@ const queries = [
 const CredentialsForm = forwardRef(function CredentialsForm(props, ref) {
   function handleSubmit(e) {
     e.preventDefault();
-    const formNode = document.getElementById("credentialsForm");
+    const formNode = document.getElementById(props.formId);
     const data = new FormData(formNode);
     const dataObj = {};
     for (const [key, value] of data.entries()) {
       dataObj[key] = value;
     }
     props.onCompletion(dataObj);
+    props.nextStep();
   }
 
   return (
     <div>
-      <form action="" id="credentialsForm" ref={ref} onSubmit={handleSubmit}>
+      <form action="" id={props.formId} ref={ref} onSubmit={handleSubmit}>
         <table>
           <tbody>
             {queries.map((query) => {
@@ -33,7 +34,7 @@ const CredentialsForm = forwardRef(function CredentialsForm(props, ref) {
                   key={query.name}
                   query={query.name}
                   type={query.inputType}
-                  form={"credentialsForm"}
+                  form={props.formId}
                 />
               );
             })}
