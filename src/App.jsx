@@ -9,16 +9,6 @@ function App() {
   const [data, setData] = useState([]);
   const [currentForm, setCurrentForm] = useState(null);
 
-  const formRef = useRef(null);
-  console.log(step);
-
-  useEffect(() => {
-    if (formRef.current !== null) {
-      setCurrentForm(() => ({ ...formRef }));
-      console.log("effect", formRef.current);
-    }
-  }, [step]);
-
   const nextStep = () => {
     setStep((step) => step + 1);
   };
@@ -46,9 +36,7 @@ function App() {
         />
         {step > 0 && (
           <NameForm
-            ref={formRef}
-            previousStep={previousStep}
-            nextStep={nextStep}
+            ref={(node) => setCurrentForm(() => node)}
             onCompletion={handleNewData}
           />
         )}
