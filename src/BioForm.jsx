@@ -1,6 +1,7 @@
 import { useState } from "react";
+import Form from "./Form";
 
-export default function Bio({ formId }) {
+export default function BioForm({ formId, onCompletion, nextStep }) {
   const [inputValue, setInputValue] = useState("");
 
   function handleTyping(e) {
@@ -8,12 +9,15 @@ export default function Bio({ formId }) {
   }
 
   return (
-    <textarea
-      name="bio"
-      id="bio"
-      value={inputValue}
-      form={formId}
-      onChange={handleTyping}
-    ></textarea>
+    <Form formId={formId} onCompletion={onCompletion} nextStep={nextStep}>
+      <textarea
+        name="bio"
+        id="bio"
+        value={inputValue}
+        form={formId}
+        onChange={handleTyping}
+        required
+      ></textarea>
+    </Form>
   );
 }

@@ -3,22 +3,31 @@ import Header from "./header";
 import { useEffect, useRef, useState } from "react";
 import CredentialsForm from "./CredentialsForm";
 import Nav from "./Nav";
+import { formQueries } from "./assets/static";
+import BioForm from "./BioForm";
 
 function App() {
   const [step, setStep] = useState(0);
   const [data, setData] = useState([]);
-  const [currentForm, setCurrentForm] = useState(null);
 
   const forms = [
     null,
     <CredentialsForm
-      ref={(node) => setCurrentForm(() => node)}
       onCompletion={handleNewData}
       key={"credentialsForm"}
       formId={"credentialsForm"}
       nextStep={nextStep}
+      queries={formQueries.credentialsForm}
+    />,
+    <BioForm
+      onCompletion={handleNewData}
+      key={"bioForm"}
+      formId={"bioForm"}
+      nextStep={nextStep}
     />,
   ];
+
+  const currentForm = forms[step]?.props.formId;
 
   function nextStep() {
     setStep((step) => step + 1);

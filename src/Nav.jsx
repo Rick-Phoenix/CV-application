@@ -14,7 +14,7 @@ export default function Nav({ step, nextStep, previousStep, form }) {
           onClick={() => {
             console.log(form);
           }}
-          form={form?.id}
+          form={form}
         >
           Next
         </button>
