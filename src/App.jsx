@@ -1,8 +1,8 @@
 import "./App.css";
 import Header from "./header";
 import { useEffect, useRef, useState } from "react";
-import NameForm from "./nameform";
-import Nav from "./nav";
+import CredentialsForm from "./CredentialsForm";
+import Nav from "./Nav";
 
 function App() {
   const [step, setStep] = useState(0);
@@ -35,7 +35,7 @@ function App() {
           form={currentForm}
         />
         {step > 0 && (
-          <NameForm
+          <CredentialsForm
             ref={(node) => setCurrentForm(() => node)}
             onCompletion={handleNewData}
           />

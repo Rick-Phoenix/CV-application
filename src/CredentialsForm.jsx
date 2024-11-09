@@ -10,10 +10,11 @@ const queries = [
   { name: "Email address", inputType: "email" },
 ];
 
-const NameForm = forwardRef(function NameForm(props, ref) {
+const CredentialsForm = forwardRef(function CredentialsForm(props, ref) {
   function handleSubmit(e) {
     e.preventDefault();
-    const data = new FormData(ref.current);
+    const formNode = document.getElementById("credentialsForm");
+    const data = new FormData(formNode);
     const dataObj = {};
     for (const [key, value] of data.entries()) {
       dataObj[key] = value;
@@ -43,4 +44,4 @@ const NameForm = forwardRef(function NameForm(props, ref) {
   );
 });
 
-export default NameForm;
+export default CredentialsForm;
