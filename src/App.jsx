@@ -5,6 +5,7 @@ import CredentialsForm from "./CredentialsForm";
 import Nav from "./Nav";
 import { formQueries } from "./assets/static";
 import BioForm from "./BioForm";
+import EduForm from "./EduForm";
 
 function App() {
   const [step, setStep] = useState(0);
@@ -23,6 +24,12 @@ function App() {
       onCompletion={handleNewData}
       key={"bioForm"}
       formId={"bioForm"}
+      nextStep={nextStep}
+    />,
+    <EduForm
+      onCompletion={handleNewData}
+      key={"eduForm"}
+      formId={"eduForm"}
       nextStep={nextStep}
     />,
   ];

@@ -1,11 +1,34 @@
-import { useState } from "react";
+import { useRef, useState } from "react";
 import Form from "./Form";
+import EduInput from "./EduInput";
 
 export default function EduForm({ formId, onCompletion, nextStep }) {
-  const [inputValue, setInputValue] = useState("");
+  const [counter, setCounter] = useState(1);
+  const rowsCount = Array.from({ length: counter });
 
-  function handleInput(e) {
-    setInputValue(e.target.value);
+  const types = ["eduType", "institutionName", "finalGrade"];
+
+  function renderInputFields() {
+    counter.current++;
+    return (
+      <tr>
+        {types.map((type) => {
+          return (
+            <EduInput
+              key={type + counter.current}
+              type={type}
+              counter={counter.current}
+              formId={formId}
+            />
+          );
+        })}
+        <td>
+          <button type="button" onClick={() => renderInputFields()}>
+            New
+          </button>
+        </td>
+      </tr>
+    );
   }
 
   return (
@@ -18,26 +41,7 @@ export default function EduForm({ formId, onCompletion, nextStep }) {
             <td>Final Grade</td>
           </tr>
         </thead>
-        <tbody>
-          <tr>
-            <td>
-              {/* Move inputs to a separate comp to be able to generate more of them */}
-              <select
-                name="eduType"
-                id="eduType"
-                value={inputValue}
-                onChange={handleInput}
-              >
-                <option value="" disabled hidden>
-                  Type of Education
-                </option>
-                <option value=""></option>
-              </select>
-            </td>
-            <td></td>
-            <td></td>
-          </tr>
-        </tbody>
+        <tbody>{}</tbody>
       </table>
     </Form>
   );
