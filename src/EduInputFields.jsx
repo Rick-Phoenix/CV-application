@@ -1,10 +1,11 @@
 import { useState } from "react";
 
 export default function EduInput({ formId, counter, type, previousData }) {
-  const [inputValue, setInputValue] = useState(previousData || "");
+  const [inputValue, setInputValue] = useState(previousData?.[type] || "");
 
   function handleInput(e) {
     setInputValue(e.target.value);
+    previousData[type] = e.target.value;
   }
 
   return type === "eduType" ? (

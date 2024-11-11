@@ -1,10 +1,12 @@
 import { useState } from "react";
+import { formData } from "./assets/data";
 
 export default function CredentialsInputs({ query, type, form, previousData }) {
   const [inputValue, setInputValue] = useState(previousData || "");
 
   function handleTyping(e) {
     setInputValue(e.target.value);
+    formData.credentialsForm[query] = e.target.value;
   }
 
   return (
@@ -31,9 +33,7 @@ export default function CredentialsInputs({ query, type, form, previousData }) {
             name={query}
             id={query}
             value={inputValue}
-            onChange={(e) => {
-              setInputValue(e.target.value);
-            }}
+            onChange={handleTyping}
           >
             <option value={""} hidden disabled>
               {query}

@@ -1,17 +1,14 @@
 import { forwardRef, useRef, useState } from "react";
 import CredentialsInputs from "./CredentialsInputs";
 import Form from "./Form";
+import { formData } from "./assets/data";
 
-function CredentialsForm({
-  formId,
-  onCompletion,
-  nextStep,
-  queries,
-  previousData,
-}) {
+function CredentialsForm({ formId, nextStep, queries }) {
+  const previousData = formData?.[formId];
+
   return (
     <div>
-      <Form formId={formId} onCompletion={onCompletion} nextStep={nextStep}>
+      <Form formId={formId} nextStep={nextStep}>
         <table>
           <tbody>
             {queries.map((query) => {

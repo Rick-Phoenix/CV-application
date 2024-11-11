@@ -1,20 +1,18 @@
 import { useState } from "react";
 import Form from "./Form";
+import { formData } from "./assets/data";
 
-export default function BioForm({
-  formId,
-  onCompletion,
-  nextStep,
-  previousData,
-}) {
-  const [inputValue, setInputValue] = useState(previousData?.bio || "");
+export default function BioForm({ formId, nextStep }) {
+  const previousData = formData?.[formId]?.bio;
+  const [inputValue, setInputValue] = useState(previousData || "");
 
   function handleTyping(e) {
     setInputValue(e.target.value);
+    formData.bioForm.bio = e.target.value;
   }
 
   return (
-    <Form formId={formId} onCompletion={onCompletion} nextStep={nextStep}>
+    <Form formId={formId} nextStep={nextStep}>
       <textarea
         name="bio"
         id="bio"

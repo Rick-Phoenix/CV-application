@@ -1,11 +1,10 @@
-import { saveForm } from "./assets/static";
+import { formData } from "./assets/data";
 
-export default function Form({ formId, onCompletion, nextStep, children }) {
+export default function Form({ formId, nextStep, children }) {
   function handleSubmit(e) {
     e.preventDefault();
-    const dataObj = saveForm(formId);
-    onCompletion(dataObj);
     nextStep();
+    console.log(formData);
   }
 
   return (

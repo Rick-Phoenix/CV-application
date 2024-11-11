@@ -1,13 +1,13 @@
-import { useRef, useState } from "react";
+import { useState } from "react";
 import Form from "./Form";
-import EduInput from "./EduInputFields";
+import ProfInput from "./ProfInput";
 import { formData } from "./assets/data";
 
-export default function EduForm({ formId, nextStep }) {
-  const previousData = formData.eduForm;
+export default function ProfForm({ formId, nextStep }) {
+  const previousData = formData.profForm;
   const [rows, setRows] = useState(previousData.rows);
 
-  const types = ["eduType", "institutionName", "finalGrade"];
+  const types = ["jobTitle", "employer", "duration"];
 
   function handleNewInput() {
     previousData.counter++;
@@ -27,9 +27,9 @@ export default function EduForm({ formId, nextStep }) {
       <table>
         <thead>
           <tr>
-            <td>Type of Education</td>
-            <td>Institution</td>
-            <td>Final Grade</td>
+            <td>Job Title</td>
+            <td>Employer</td>
+            <td>Duration</td>
           </tr>
         </thead>
         <tbody>
@@ -38,7 +38,7 @@ export default function EduForm({ formId, nextStep }) {
               <tr key={row.key}>
                 {types.map((type) => {
                   return (
-                    <EduInput
+                    <ProfInput
                       key={type + row.key}
                       type={type}
                       counter={row.key}
