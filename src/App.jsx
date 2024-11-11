@@ -14,23 +14,26 @@ function App() {
   const forms = [
     null,
     <CredentialsForm
-      onCompletion={handleNewData}
+      onCompletion={saveData}
       key={"credentialsForm"}
       formId={"credentialsForm"}
       nextStep={nextStep}
       queries={formQueries.credentialsForm}
+      previousData={data[step]?.credentialsForm}
     />,
     <BioForm
-      onCompletion={handleNewData}
+      onCompletion={saveData}
       key={"bioForm"}
       formId={"bioForm"}
       nextStep={nextStep}
+      previousData={data[step]?.bioForm}
     />,
     <EduForm
-      onCompletion={handleNewData}
+      onCompletion={saveData}
       key={"eduForm"}
       formId={"eduForm"}
       nextStep={nextStep}
+      previousData={data[step]?.eduForm}
     />,
   ];
 
@@ -41,13 +44,13 @@ function App() {
   }
 
   function previousStep() {
-    setStep((prev) => (prev === 1 ? prev : prev - 1));
+    setStep((prev) => (prev === 0 ? prev : prev - 1));
   }
 
-  function handleNewData(newData) {
+  function saveData(newData) {
     setData((prevData) => {
       const updatedData = [...prevData];
-      updatedData[step - 1] = newData;
+      updatedData[step] = newData;
       console.log(updatedData);
       return updatedData;
     });
@@ -66,6 +69,7 @@ function App() {
           nextStep={nextStep}
           previousStep={previousStep}
           form={currentForm}
+          saveData={saveData}
         />
         {renderForm(step)}
       </div>

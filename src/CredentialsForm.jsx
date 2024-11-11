@@ -2,7 +2,13 @@ import { forwardRef, useRef, useState } from "react";
 import CredentialsInputs from "./CredentialsInputs";
 import Form from "./Form";
 
-function CredentialsForm({ formId, onCompletion, nextStep, queries }) {
+function CredentialsForm({
+  formId,
+  onCompletion,
+  nextStep,
+  queries,
+  previousData,
+}) {
   return (
     <div>
       <Form formId={formId} onCompletion={onCompletion} nextStep={nextStep}>
@@ -15,6 +21,7 @@ function CredentialsForm({ formId, onCompletion, nextStep, queries }) {
                   query={query.name}
                   type={query.inputType}
                   form={formId}
+                  previousData={previousData?.[query.name]}
                 />
               );
             })}

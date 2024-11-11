@@ -2,11 +2,21 @@ import { useRef, useState } from "react";
 import Form from "./Form";
 import EduInput from "./EduInput";
 
-export default function EduForm({ formId, onCompletion, nextStep }) {
-  const [counter, setCounter] = useState(1);
+export default function EduForm({
+  formId,
+  onCompletion,
+  nextStep,
+  previousData,
+}) {
+  function getPreviousCounter(previousData) {
+    const keysArray = Object.keys(previousData);
+    const previousRow = +keysArray[keysArray.length - 1].slice(-1);
+    return previousRow;
+  }
+  const [counter, setCounter] = useState(
+    previousData ? getPreviousCounter(previousData) : 1
+  );
   const rowsCount = Array.from({ length: counter }, (v, i) => i + 1);
-  console.log(rowsCount);
-
   const types = ["eduType", "institutionName", "finalGrade"];
 
   function handleNewInput() {
@@ -34,6 +44,7 @@ export default function EduForm({ formId, onCompletion, nextStep }) {
                       type={type}
                       counter={row}
                       formId={formId}
+                      previousData={previousData?.[type + row]}
                     />
                   );
                 })}

@@ -1,7 +1,7 @@
 import { useState } from "react";
 
-export default function EduInput({ formId, counter, type }) {
-  const [inputValue, setInputValue] = useState("");
+export default function EduInput({ formId, counter, type, previousData }) {
+  const [inputValue, setInputValue] = useState(previousData || "");
 
   function handleInput(e) {
     setInputValue(e.target.value);
@@ -15,6 +15,7 @@ export default function EduInput({ formId, counter, type }) {
         value={inputValue}
         onChange={handleInput}
         form={formId}
+        required
       >
         <option value="" disabled hidden>
           Type of Education
@@ -36,6 +37,7 @@ export default function EduInput({ formId, counter, type }) {
         onChange={handleInput}
         form={formId}
         placeholder="Institution Name"
+        required
       />
     </td>
   ) : (
@@ -48,6 +50,7 @@ export default function EduInput({ formId, counter, type }) {
         onChange={handleInput}
         form={formId}
         placeholder="Final Grade"
+        required
       />
     </td>
   );

@@ -1,8 +1,13 @@
 import { useState } from "react";
 import Form from "./Form";
 
-export default function BioForm({ formId, onCompletion, nextStep }) {
-  const [inputValue, setInputValue] = useState("");
+export default function BioForm({
+  formId,
+  onCompletion,
+  nextStep,
+  previousData,
+}) {
+  const [inputValue, setInputValue] = useState(previousData?.bio || "");
 
   function handleTyping(e) {
     setInputValue(e.target.value);

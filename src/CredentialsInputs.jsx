@@ -1,7 +1,7 @@
 import { useState } from "react";
 
-export default function CredentialsInputs({ query, type, form }) {
-  const [inputValue, setInputValue] = useState("");
+export default function CredentialsInputs({ query, type, form, previousData }) {
+  const [inputValue, setInputValue] = useState(previousData || "");
 
   function handleTyping(e) {
     setInputValue(e.target.value);
