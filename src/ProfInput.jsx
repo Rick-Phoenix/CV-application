@@ -36,6 +36,7 @@ export default function ProfInput({ formId, counter, type, previousData }) {
   ) : (
     <td>
       <input
+        className="duration"
         type="number"
         id={type + counter}
         name={type + counter}

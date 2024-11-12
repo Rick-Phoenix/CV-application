@@ -77,3 +77,51 @@ button:focus-visible {
     background-color: #f9f9f9;
   }
 }
+
+nav {
+  display: flex;
+  gap: 2rem;
+  justify-content: center;
+}
+
+div.wrapper {
+  display: flex;
+  justify-content: center;
+  margin: 3rem 0;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  place-items: center;
+
+  tr {
+    border-bottom: 1rem solid transparent;
+  }
+
+  td {
+    border: 1rem solid transparent;
+  }
+
+  button {
+    margin-right: 1rem;
+  }
+
+  input,
+  select {
+    font-size: 1rem;
+    width: 100%;
+    box-sizing: border-box;
+  }
+
+  input.duration {
+    width: 70%;
+  }
+
+  textarea {
+    resize: none;
+    height: 150px;
+    width: 300px;
+  }
+}

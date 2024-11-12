@@ -16,7 +16,7 @@ export default function HobbiesInput({ formId, counter, type, previousData }) {
         value={inputValue}
         onChange={handleInput}
         form={formId}
-        placeholder="Hobby / Passion / Favourite activity"
+        placeholder="Hobby / Passion"
         required
       />
     </td>

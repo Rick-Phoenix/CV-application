@@ -4,11 +4,10 @@ export default function Form({ formId, nextStep, children }) {
   function handleSubmit(e) {
     e.preventDefault();
     nextStep();
-    console.log(formData);
   }
 
   return (
-    <div>
+    <div className="wrapper">
       <form action="" id={formId} onSubmit={handleSubmit}>
         {children}
       </form>

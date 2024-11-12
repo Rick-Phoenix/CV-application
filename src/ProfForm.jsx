@@ -11,7 +11,6 @@ export default function ProfForm({ formId, nextStep }) {
 
   function handleNewInput() {
     previousData.counter++;
-    console.log(previousData.counter);
     previousData.rows = [...previousData.rows, { key: previousData.counter }];
     setRows(previousData.rows);
   }

@@ -19,6 +19,7 @@ export default function BioForm({ formId, nextStep }) {
         value={inputValue}
         form={formId}
         onChange={handleTyping}
+        placeholder="Write something about yourself..."
         required
       ></textarea>
     </Form>
