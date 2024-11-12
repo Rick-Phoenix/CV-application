@@ -13,6 +13,17 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
+@font-face {
+  font-family: Inter;
+  src: url(./assets/Fonts/inter.ttf);
+}
+
+@font-face {
+  font-family: Inter;
+  src: url(./assets/Fonts/inter-italic.ttf);
+  font-style: italic;
+}
+
 a {
   font-weight: 500;
   color: #646cff;

@@ -1,16 +1,18 @@
 export let formData = {
-  credentialsForm: {},
+  personalInfoForm: {},
   bioForm: {},
   eduForm: { rows: [{ key: 0 }], counter: 0 },
   profForm: { rows: [{ key: 0 }], counter: 0 },
+  hobbiesForm: { rows: [{ key: 0 }], counter: 0 },
 };
 
 export function resetData() {
   formData = {
-    credentialsForm: {},
+    personalInfoForm: {},
     bioForm: {},
     eduForm: { rows: [{ key: 0 }], counter: 0 },
     profForm: { rows: [{ key: 0 }], counter: 0 },
+    hobbiesForm: { rows: [{ key: 0 }], counter: 0 },
   };
 }
 

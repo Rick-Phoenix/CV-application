@@ -1,9 +1,9 @@
 import { forwardRef, useRef, useState } from "react";
-import CredentialsInputs from "./CredentialsInputs";
+import PersonalInfoInputs from "./PersonalInfoInputs";
 import Form from "./Form";
 import { formData } from "./assets/data";
 
-function CredentialsForm({ formId, nextStep, queries }) {
+function PersonalInfoForm({ formId, nextStep, queries }) {
   const previousData = formData?.[formId];
 
   return (
@@ -13,7 +13,7 @@ function CredentialsForm({ formId, nextStep, queries }) {
           <tbody>
             {queries.map((query) => {
               return (
-                <CredentialsInputs
+                <PersonalInfoInputs
                   key={query.name}
                   query={query.name}
                   type={query.inputType}
@@ -29,4 +29,4 @@ function CredentialsForm({ formId, nextStep, queries }) {
   );
 }
 
-export default CredentialsForm;
+export default PersonalInfoForm;

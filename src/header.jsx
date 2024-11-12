@@ -6,6 +6,7 @@ export default function Header({ step }) {
     "What is your educational background?",
     "Tell me about your past professional experiences.",
     "Lastly, what are your favourite hobbies and passions?",
+    "Well done! You will receive your new CV in a few seconds...",
   ];
 
   return <h1>{content[step]}</h1>;

@@ -22,8 +22,8 @@ export default function EduInput({ formId, counter, type, previousData }) {
           Type of Education
         </option>
         <option value="High School">High School</option>
-        <option value="Bachelor's Degree">Bachelor&aposs Degree</option>
-        <option value="Master's Degree">Master&aposs Degree</option>
+        <option value="Bachelor's Degree">Bachelor&apos;s Degree</option>
+        <option value="Master's Degree">Master&apos;s Degree</option>
         <option value="PhD">PhD</option>
         <option value="Professional Diploma">Professional Diploma</option>
       </select>

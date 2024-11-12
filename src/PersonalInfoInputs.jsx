@@ -1,12 +1,17 @@
 import { useState } from "react";
 import { formData } from "./assets/data";
 
-export default function CredentialsInputs({ query, type, form, previousData }) {
+export default function PersonalInfoInputs({
+  query,
+  type,
+  form,
+  previousData,
+}) {
   const [inputValue, setInputValue] = useState(previousData || "");
 
   function handleTyping(e) {
     setInputValue(e.target.value);
-    formData.credentialsForm[query] = e.target.value;
+    formData.personalInfoForm[query] = e.target.value;
   }
 
   return (
